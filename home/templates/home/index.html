@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <form action="/" method="POST"  class="row g-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% if users %}
+    <div class="container mt-5">
+        <h1></h1>
+        <table style="border: 2px solid black; padding: 10px;">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Gender</th>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr style="border: 2px solid black;">
+
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.city }}</td>
+                    <td>{{ user.state }}</td>
+                    <td>{{ user.gender }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome Guest</h1>
+    </div>
+{% endif %}
+
+
+<!-- 
+<div class="container mt-5">
+    <form>
+        <div class="row g-3">
+            <div class="col">
+                <label for="#first_name" class="form-label">First Name:</label>
+                <input type="text" id="first_name" class="form-control" placeholder="First name"
+                    aria-label="First name">
+            </div>
+            <div class="col">
+                <label for="#last_name" class="form-label">Last Name:</label>
+                <input type="text" id="last_name" class="form-control" placeholder="Last name"
+                    aria-label="Last name">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Email: </label>
+            <input type="email" class="form-control" id="inputEmail4">
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="inputPassword4">
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">City:</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="">
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State:</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Choose Your State ...</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Bihar</option>
+                    <option>Mumbai</option>
+                    <option>Delhi</option>
+                </select>
+            </div>
+            <fieldset class="row mb-3 mt-3">
+                <legend class="col-form-label col-sm-2 pt-0">Gender:</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                            checked>
+                        <label class="form-check-label" for="gridRadios1">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2">
+                            Female  
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div> -->
+{% endblock content %}
