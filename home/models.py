@@ -34,6 +34,12 @@ STATE_CHOICES =(
     ('28', 'Sikkim')
 )
 
+def get_state_name(state_id):
+    for state in STATE_CHOICES:
+        if state[0] == state_id:
+            return state[1]
+    return None
+
 GENDER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female')
@@ -45,5 +51,5 @@ class User(models.Model):
     email = models.EmailField(max_length=50)
     password = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=10, choices = STATE_CHOICES)
-    gender = models.CharField(max_length=1, choices = GENDER_CHOICES)
+    state = models.CharField(max_length=10, choices = STATE_CHOICES, default='1')
+    gender = models.CharField(max_length=1, choices = GENDER_CHOICES, default='M')
