@@ -1,0 +1,20 @@
+databases:
+  - name: crud
+    databaseName: crud
+    user: crud
+
+services:
+  - type: web
+    name: crud
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn mysite.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: crud
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
